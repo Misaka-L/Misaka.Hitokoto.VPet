@@ -48,7 +48,11 @@
             <StackPanel Grid.Row="1" Margin="16 4">
                 <TextBlock Text="插件设置" FontSize="24" FontWeight="Bold" Foreground="White" />
                 <TextBlock Text="关于该插件" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0 5" />
-                <TextBlock Text="一言 - Hitokoto 虚拟桌宠模拟器插件和一言网（hitokoto.cn）与 MoeTeam（萌创团队）没有任何从属关系。插件本体以 GPLv3 协议开源。" Foreground="White"/>
+                <TextBlock Text="一言 - Hitokoto 虚拟桌宠模拟器插件和一言网（hitokoto.cn）与 MoeTeam（萌创团队）没有任何从属关系。插件本体以 LGPLv3 协议开源。" Foreground="White"/>
+                <TextBlock>
+                    <Hyperlink NavigateUri="https://github.com/Misaka-L/Misaka.Hitokoto.VPet">Github 仓库</Hyperlink>
+                    <Hyperlink NavigateUri="https://hitokoto.cn/">一言网</Hyperlink>
+                </TextBlock>
                 <TextBlock Text="API 地址" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0 5" />
                 <ComboBox IsEditable="True" Text="{Binding ApiHost}">
                     <ComboBoxItem>https://v1.hitokoto.cn</ComboBoxItem>
