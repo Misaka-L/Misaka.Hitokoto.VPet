@@ -1,0 +1,2 @@
+xcopy PluginContent "E:\Program Files (x86)\Steam\steamapps\common\VPet\mod\HitokotoVPet\" /S /E /Y
+xcopy bin\Debug\net462 "E:\Program Files (x86)\Steam\steamapps\common\VPet\mod\HitokotoVPet\plugin\" /S /E /Y
