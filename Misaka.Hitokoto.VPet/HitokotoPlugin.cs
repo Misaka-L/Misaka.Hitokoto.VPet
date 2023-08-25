@@ -53,8 +53,8 @@ namespace Misaka.Hitokoto.VPet
                     var hitokoto = await _hitokotoClient.GetHitokotoAsync(PluginSetting.HitokotoTypes);
                     MW.Main.SayRnd(hitokoto.ToString());
 
-                    var delay = new Random().Next(10000, 1200000);
-                    await Task.Delay(delay);
+                    var delay = new Random().Next(30, 1200);
+                    await Task.Delay(TimeSpan.FromSeconds(delay));
                 }
             }, _cancellationTokenSource.Token);
         }
