@@ -24,18 +24,18 @@ namespace Misaka.Hitokoto.VPet
         {
             GameMainWindow = mainWindow;
 
-            var harmony = new Harmony("xyz.misakal.vpet.plugin.hitokoto");
-            harmony.PatchAll();
-
-            var vPetMainAssembly = Assembly.GetCallingAssembly();
-            var vPetInterfaceAssembly = Assembly.GetAssembly(typeof(IMainWindow));
-
-            foreach (var patch in Assembly.GetExecutingAssembly().GetTypes()
-                         .Where(type => type != typeof(IPatch) && typeof(IPatch).IsAssignableFrom(type)).ToArray())
-            {
-                var instance = (IPatch)Activator.CreateInstance(patch);
-                instance.Patch(harmony, vPetMainAssembly, vPetInterfaceAssembly);
-            }
+            // var harmony = new Harmony("xyz.misakal.vpet.plugin.hitokoto");
+            // harmony.PatchAll(Assembly.GetExecutingAssembly());
+            //
+            // var vPetMainAssembly = Assembly.GetCallingAssembly();
+            // var vPetInterfaceAssembly = Assembly.GetAssembly(typeof(IMainWindow));
+            //
+            // foreach (var patch in Assembly.GetExecutingAssembly().GetTypes()
+            //              .Where(type => type != typeof(IPatch) && typeof(IPatch).IsAssignableFrom(type)).ToArray())
+            // {
+            //     var instance = (IPatch)Activator.CreateInstance(patch);
+            //     instance.Patch(harmony, vPetMainAssembly, vPetInterfaceAssembly);
+            // }
         }
 
         public override void LoadPlugin()

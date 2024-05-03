@@ -9,15 +9,14 @@ public class HitokotoSettings
     [Line] public HitokotoType[] HitokotoTypes = {};
     [Line] public string ApiBaseUrl = "https://v1.hitokoto.cn";
 
-    public void Save(Setting setting)
+    public void Save(ISetting setting)
     {
-        setting.Remove(nameof(HitokotoSettings));
-        setting.Add(LPSConvert.SerializeObject(this, nameof(HitokotoSettings)));
+        setting[nameof(HitokotoSettings)].Set(LPSConvert.SerializeObject(this, nameof(HitokotoSettings)));
     }
 
-    public static HitokotoSettings Load(Setting setting)
+    public static HitokotoSettings Load(ISetting setting)
     {
-        var settingLine = setting.FindLine(nameof(HitokotoSettings));
+        var settingLine = setting[nameof(HitokotoSettings)];
         if (settingLine == null)
         {
             return new HitokotoSettings();
