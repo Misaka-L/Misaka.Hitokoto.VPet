@@ -44,16 +44,23 @@ namespace Misaka.Hitokoto.VPet
             MW.Main.OnSay += _ => GetHitokoto();
 
             PluginSetting = HitokotoSettings.Load(MW.Set);
-            
+
             Task.Run(async () =>
             {
                 await Task.Delay(5000);
                 while (!_cancellationTokenSource.IsCancellationRequested)
                 {
-                    var hitokoto = await _hitokotoClient.GetHitokotoAsync(PluginSetting.HitokotoTypes);
-                    MW.Main.SayRnd(hitokoto.ToString());
+                    try
+                    {
+                        var hitokoto = await _hitokotoClient.GetHitokotoAsync(PluginSetting.HitokotoTypes);
+                        MW.Main.SayRnd(hitokoto.ToString());
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
 
-                    var delay = new Random().Next(30, 1200);
+                    var delay = new Random().Next(PluginSetting.MinRandomDuration, PluginSetting.MaxRandomDuration);
                     await Task.Delay(TimeSpan.FromSeconds(delay));
                 }
             }, _cancellationTokenSource.Token);
@@ -71,10 +78,18 @@ namespace Misaka.Hitokoto.VPet
 
         private async void GetHitokoto()
         {
+            await Task.Delay(TimeSpan.FromSeconds(3));
             _hitokotoClient.SetApiBaseUrl(PluginSetting.ApiBaseUrl);
 
-            var hitokoto = await _hitokotoClient.GetHitokotoAsync(PluginSetting.HitokotoTypes);
-            HitokotoItemInstance = hitokoto;
+            try
+            {
+                var hitokoto = await _hitokotoClient.GetHitokotoAsync(PluginSetting.HitokotoTypes);
+                HitokotoItemInstance = hitokoto;
+            }
+            catch
+            {
+                // ignored
+            }
         }
     }
 }

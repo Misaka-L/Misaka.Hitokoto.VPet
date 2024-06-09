@@ -54,12 +54,16 @@
                     <Hyperlink NavigateUri="https://hitokoto.cn/">一言网</Hyperlink>
                 </TextBlock>
                 <TextBlock Text="API 地址" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0 5" />
-                <ComboBox IsEditable="True" Text="{Binding ApiHost}">
+                <ComboBox IsEditable="True" Text="{Binding ApiHost, Mode=TwoWay}">
                     <ComboBoxItem>https://v1.hitokoto.cn</ComboBoxItem>
                     <ComboBoxItem>https://international.v1.hitokoto.cn</ComboBoxItem>
                 </ComboBox>
+                <TextBlock Text="随机一言最小时间间隔" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0 5" />
+                <hc:NumericUpDown Minimum="10" Value="{Binding MinRandomDuration, Mode=TwoWay}"/>
+                <TextBlock Text="随机一言最大时间间隔" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0 5" />
+                <hc:NumericUpDown Minimum="10" Value="{Binding MaxRandomDuration, Mode=TwoWay}"/>
                 <TextBlock Text="启用的句子类型" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="0 5" />
-                <hc:CheckComboBox ShowSelectAllButton="True" SelectionChanged="Selector_OnSelectionChanged" ItemsSource="{Binding AvailableHitokotoTypes}"/>
+                <hc:CheckComboBox ShowSelectAllButton="True" SelectionChanged="Selector_OnSelectionChanged" ItemsSource="{Binding AvailableHitokotoTypes, Mode=TwoWay}"/>
                 <TextBlock Text="该项留空为全选，如果你设置过该项但是该项显示为空为正常现象，因为这个该死的多选组合框控件竟然不支持设置选择的项目。" Foreground="White" Margin="0 5"/>
                 <Button Content="保存设置" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Stretch" Style="{StaticResource ButtonPrimary}" Margin="0 10"/>
             </StackPanel>

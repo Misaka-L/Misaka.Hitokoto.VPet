@@ -14,6 +14,9 @@ public partial class SettingsWindowViewModel : ObservableObject
 
     [ObservableProperty] private string[] _availableHitokotoTypes = null!;
 
+    [ObservableProperty] private int _minRandomDuration = 30;
+    [ObservableProperty] private int _maxRandomDuration = 1200;
+
     public SettingsWindowViewModel()
     {
         var settings = HitokotoPlugin.PluginSetting;
@@ -25,6 +28,9 @@ public partial class SettingsWindowViewModel : ObservableObject
         HitokotoTypes = settings.HitokotoTypes.Length == 0
             ? AvailableHitokotoTypes
             : settings.HitokotoTypes.Select(type => type.ToReadableString()).ToArray();
+
+        MinRandomDuration = settings.MinRandomDuration;
+        MaxRandomDuration = settings.MaxRandomDuration;
     }
 
     [RelayCommand]
@@ -35,10 +41,13 @@ public partial class SettingsWindowViewModel : ObservableObject
         try
         {
             var uri = new Uri(ApiHost);
-            if (uri.Scheme != "http" | uri.Scheme != "https") throw new InvalidOperationException();
+            if (uri.Scheme != "http" && uri.Scheme != "https")
+                throw new InvalidOperationException();
 
             var uriString = uri.ToString();
             apiBaseUri = uriString.EndsWith("/") ? uriString.Substring(0, uriString.Length - 1) : uriString;
+
+            throw new InvalidOperationException();
         }
         catch
         {
@@ -49,6 +58,8 @@ public partial class SettingsWindowViewModel : ObservableObject
             .GroupBy(type => type).Select(group => group.First()).ToArray();
 
         settings.ApiBaseUrl = apiBaseUri;
+        settings.MinRandomDuration = MinRandomDuration;
+        settings.MaxRandomDuration = MaxRandomDuration;
 
         if (HitokotoPlugin.GameMainWindow != null) settings.Save(HitokotoPlugin.GameMainWindow.Set);
     }

@@ -25,7 +25,7 @@ namespace Misaka.Hitokoto.VPet
         public HitokotoClient(string baseUrl = "https://v1.hitokoto.cn")
         {
             BaseUrl = baseUrl;
-        }
+}
 
         public void SetApiBaseUrl(string baseUrl)
         {
@@ -46,7 +46,7 @@ namespace Misaka.Hitokoto.VPet
 
         public async Task<HitokotoItem> GetHitokotoAsync(IEnumerable<HitokotoType> hitokotoTypes)
         {
-            var hitokotoItem = await _httpClient.GetJsonAsync<HitokotoItem>($"{BaseUrl}/?{hitokotoTypes.ToQueryString()}&encode=json&charset=utf-8");
+            var hitokotoItem = await _httpClient.GetJsonAsync<HitokotoItem>($"{BaseUrl}/?{hitokotoTypes.ToQueryString()}encode=json&charset=utf-8");
             return hitokotoItem;
         }
     }

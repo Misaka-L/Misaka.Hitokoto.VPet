@@ -8,10 +8,12 @@ public class HitokotoSettings
 {
     [Line] public HitokotoType[] HitokotoTypes = {};
     [Line] public string ApiBaseUrl = "https://v1.hitokoto.cn";
+    [Line] public int MinRandomDuration = 30;
+    [Line] public int MaxRandomDuration = 1200;
 
     public void Save(ISetting setting)
     {
-        setting[nameof(HitokotoSettings)].Set(LPSConvert.SerializeObject(this, nameof(HitokotoSettings)));
+        setting[nameof(HitokotoSettings)] = LPSConvert.SerializeObject(this, nameof(HitokotoSettings));
     }
 
     public static HitokotoSettings Load(ISetting setting)
