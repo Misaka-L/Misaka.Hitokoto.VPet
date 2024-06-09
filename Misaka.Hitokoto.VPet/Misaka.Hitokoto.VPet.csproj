@@ -6,15 +6,15 @@
         <Nullable>enable</Nullable>
         <UseWpf>true</UseWpf>
         <LangVersion>default</LangVersion>
-        <Version>1.2.0</Version>
+        <Version>1.2.1</Version>
         <Title>一言 - Hitokoto</Title>
         <Description>一个 Hitokoto 一言 VPet Plugin</Description>
         <PackageProjectUrl>https://github.com/Misaka-L/Misaka.Hitokoto.VPet</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/Misaka-L/Misaka.Hitokoto.VPet/blob/main/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/Misaka-L/Misaka.Hitokoto.VPet</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <AssemblyVersion>1.2.0</AssemblyVersion>
-        <FileVersion>1.2.0</FileVersion>
+        <AssemblyVersion>1.2.1</AssemblyVersion>
+        <FileVersion>1.2.1</FileVersion>
         <NeutralLanguage>zh-Hans-CN</NeutralLanguage>
     </PropertyGroup>
 
